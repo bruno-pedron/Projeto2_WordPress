@@ -295,17 +295,6 @@ resource "aws_db_instance" "main" {
   skip_final_snapshot    = true
 }
 
-data "template_file" "user_data" {
-  template = file("${path.module}/user_data.sh.tpl")
-  vars = {
-    efs_dns_name = aws_efs_file_system.main.dns_name
-    rds_endpoint = aws_db_instance.main.address
-    rds_user     = aws_db_instance.main.username
-    rds_password = var.db_password
-    rds_db_name  = aws_db_instance.main.db_name
-  }
-}
-
 resource "aws_launch_template" "main" {
   name_prefix            = "wordpress-"
   image_id               = "ami-0d1b5a8c13042c939"
@@ -331,7 +320,13 @@ resource "aws_launch_template" "main" {
     }
   }
 
-  user_data = base64encode(data.template_file.user_data.rendered)
+  user_data = base64encode(templatefile("${path.module}/user_data.sh.tpl", {
+    efs_dns_name = aws_efs_file_system.main.dns_name
+    rds_endpoint = aws_db_instance.main.address
+    rds_user     = aws_db_instance.main.username
+    rds_password = var.db_password
+    rds_db_name  = aws_db_instance.main.db_name
+  }))
 }
 
 resource "aws_lb" "main" {
