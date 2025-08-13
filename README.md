@@ -2,18 +2,24 @@
 
 Este repositório documenta a implementação de uma arquitetura resiliente, segura e escalável para hospedar um site WordPress na nuvem da Amazon Web Services (AWS). A infraestrutura é distribuída em múltiplas Zonas de Disponibilidade (AZs) para garantir alta disponibilidade e utiliza um Auto Scaling Group para se adaptar dinamicamente à carga de tráfego.
 
+<div align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=aws,docker,wordpress,terraform" alt="My Skills" />
+  </a>
+</div>
+
 ## Tabela de Conteúdo
 
 1.  [Visão Geral do Projeto](#1-visão-geral-do-projeto)
-2.  [Etapa 1: Fundação da Rede (VPC)](#2-etapa-1-fundação-da-rede-vpc)
+2.  [Etapa 1: Fundação da Rede (VPC)](#2-etapa-1-fundação-da-rede-vpc) <img src="./imgs/vpc.png" alt="img" width="30" align="center"> 
     * [Criar a VPC e as Sub-redes](#criar-a-vpc-e-as-sub-redes)
     * [Criar Internet Gateway e NAT Gateway](#criar-internet-gateway-e-nat-gateway)
     * [Configurar Tabelas de Rotas](#configurar-tabelas-de-rotas)
-3.  [Etapa 2: Camada de Dados (EFS e RDS)](#3-etapa-2-camada-de-dados-efs-e-rds)
+3.  [Etapa 2: Camada de Dados (EFS e RDS)](#3-etapa-2-camada-de-dados-efs-e-rds) <img src="./imgs/amazon-elastic-file-system.png" alt="img" width="30" align="center"> <img src="./imgs/rds.png" alt="img" width="30" align="center"> 
     * [Criar Grupos de Segurança](#criar-grupos-de-segurança-security-groups)
     * [Criar Sistema de Arquivos (EFS)](#criar-sistema-de-arquivos-efs)
     * [Criar Banco de Dados (RDS)](#criar-banco-de-dados-rds)
-4.  [Etapa 3: Camada de Aplicação (EC2, ASG, ALB)](#4-etapa-3-camada-de-aplicação-ec2-asg-alb)
+4.  [Etapa 3: Camada de Aplicação (EC2, ASG, ALB)](#4-etapa-3-camada-de-aplicação-ec2-asg-alb) <img src="./imgs/Amazon-EC2.png" alt="img" width="30" align="center"> <img src="./imgs/EC2 Auto Scaling.png" alt="img" width="32" align="center"> <img src="./imgs/alb1 (1).png" alt="img" width="29" align="center"> 
     * [Criar Launch Template com User Data (Docker)](#criar-launch-template-com-user-data-docker)
     * [Criar Auto Scaling Group (ASG)](#criar-auto-scaling-group-asg)
     * [Criar Application Load Balancer (ALB)](#criar-application-load-balancer-alb)
