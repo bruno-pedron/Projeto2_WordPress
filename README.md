@@ -15,11 +15,11 @@ Este repositório documenta a implementação de uma arquitetura resiliente, seg
     * [Criar a VPC e as Sub-redes](#criar-a-vpc-e-as-sub-redes)
     * [Criar Internet Gateway e NAT Gateway](#criar-internet-gateway-e-nat-gateway)
     * [Configurar Tabelas de Rotas](#configurar-tabelas-de-rotas)
-3.  [Etapa 2: Camada de Dados (EFS e RDS)](#3-etapa-2-camada-de-dados-efs-e-rds) <img src="./imgs/amazon-elastic-file-system.png" alt="img" width="30" align="center"> <img src="./imgs/rds.png" alt="img" width="30" align="center"> 
+3.  [Etapa 2: Camada de Dados (EFS e RDS)](#3-etapa-2-camada-de-dados-efs-e-rds) <img src="./imgs/efs.png" alt="img" width="30" align="center"> <img src="./imgs/rds.png" alt="img" width="30" align="center"> 
     * [Criar Grupos de Segurança](#criar-grupos-de-segurança-security-groups)
     * [Criar Sistema de Arquivos (EFS)](#criar-sistema-de-arquivos-efs)
     * [Criar Banco de Dados (RDS)](#criar-banco-de-dados-rds)
-4.  [Etapa 3: Camada de Aplicação (EC2, ASG, ALB)](#4-etapa-3-camada-de-aplicação-ec2-asg-alb) <img src="./imgs/Amazon-EC2.png" alt="img" width="30" align="center"> <img src="./imgs/EC2 Auto Scaling.png" alt="img" width="32" align="center"> <img src="./imgs/alb1 (1).png" alt="img" width="29" align="center"> 
+4.  [Etapa 3: Camada de Aplicação (EC2, ASG, ALB)](#4-etapa-3-camada-de-aplicação-ec2-asg-alb) <img src="./imgs/EC2.png" alt="img" width="30" align="center"> <img src="./imgs/asg.png" alt="img" width="32" align="center"> <img src="./imgs/alb.png" alt="img" width="29" align="center"> 
     * [Criar Launch Template com User Data (Docker)](#criar-launch-template-com-user-data-docker)
     * [Criar Auto Scaling Group (ASG)](#criar-auto-scaling-group-asg)
     * [Criar Application Load Balancer (ALB)](#criar-application-load-balancer-alb)
@@ -117,7 +117,7 @@ Provisionamento dos serviços de armazenamento persistente.
 
 Criação dos recursos que irão executar e servir a aplicação.
 
-### Criar Launch Template com User Data (Docker)
+### Criar Launch Template com User Data (Docker Compose)
 
 1.  No console do **EC2**, vá em "Launch Templates" e crie um novo (ex: `wordpress-template`).
 2.  **AMI:** `Ubuntu Server LTS` (x86).
@@ -127,7 +127,7 @@ Criação dos recursos que irão executar e servir a aplicação.
     * **NÃO** selecione uma sub-rede.
     * **Grupo de Segurança:** Selecione o `app-sg`.
 6.  **Tags:** Adicione as tags obrigatórias (`Name`, `CostCenter`, `Project`) para instâncias e volumes.
-7.  **Detalhes Avançados -> User data:** Cole o script de inicialização para instalar o Docker e executar o container do WordPress, preenchendo os placeholders do EFS e RDS.
+7.  **Detalhes Avançados -> User data:** Cole o script de inicialização para instalar o Docker, criar o arquivo .yml e executar o container do WordPress, utilizando do EFS e RDS.
 
 ### Criar Auto Scaling Group (ASG)
 
@@ -171,6 +171,8 @@ Conexão das peças e validação da arquitetura.
 ---
 
 ## 6. Bônus: Automação com Terraform
+
+* No script do Terraform, a infraestrutura é criada/destruída TOTALMENTE, em uma aplicação real, estruturas como, RDS, EFS, SGs, etc. devem ser persistentes
 
 A construção manual é um ótimo exercício de aprendizado, mas a automação com Infraestrutura como Código (IaC) é a prática profissional padrão. Usamos o Terraform para descrever toda a arquitetura acima em código, permitindo a criação e destruição de todo o ambiente com poucos comandos.
 
