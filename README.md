@@ -182,10 +182,10 @@ A construção manual é um ótimo exercício de aprendizado, mas a automação 
 
 ### Estrutura dos Arquivos
 O projeto foi organizado nos seguintes arquivos:
-* `main.tf`: Contém a definição de todos os recursos da AWS (VPC, instâncias, etc.).
-* `variables.tf`: Declara as variáveis de entrada, como a senha do banco de dados.
-* `outputs.tf`: Declara as saídas, como o endereço DNS do Load Balancer.
-* `user_data.sh.tpl`: O template do script de inicialização das instâncias EC2.
+* [`main.tf`](https://github.com/bruno-pedron/Projeto2_WordPress/blob/main/Terraform/variables.tf): Contém a definição de todos os recursos da AWS (VPC, instâncias, etc.).
+* [`variables.tf`](https://github.com/bruno-pedron/Projeto2_WordPress/blob/main/Terraform/main.tf): Declara as variáveis de entrada, como a senha do banco de dados.
+* [`outputs.tf`](https://github.com/bruno-pedron/Projeto2_WordPress/blob/main/Terraform/outputs.tf): Declara as saídas, como o endereço DNS do Load Balancer.
+* [`user_data.sh.tpl`](https://github.com/bruno-pedron/Projeto2_WordPress/blob/main/Terraform/user_data.sh.tpl.tf): O template do script de inicialização das instâncias EC2.
 
 ### Como Executar
 1.  Navegue até a pasta do projeto no seu terminal.
