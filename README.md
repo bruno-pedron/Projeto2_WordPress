@@ -126,7 +126,7 @@ Criação dos recursos que irão executar e servir a aplicação.
 5.  **Configurações de Rede:**
     * **NÃO** selecione uma sub-rede.
     * **Grupo de Segurança:** Selecione o `app-sg`.
-6.  **Tags:** Adicione as tags obrigatórias (`Name`, `CostCenter`, `Project`) para instâncias e volumes.
+6.  **Tags:** Adicione as tags necessárias.
 7.  **Detalhes Avançados -> User data:** Cole o script de inicialização para instalar o Docker, criar o arquivo .yml e executar o container do WordPress, utilizando do EFS e RDS.
 
 ### Criar Auto Scaling Group (ASG)
