@@ -2,8 +2,6 @@
 
 <img src="./imgs/diagrama.png" alt="img"> 
 
-<br>
-
 Este repositório documenta a implementação de uma arquitetura resiliente, segura e escalável para hospedar um site WordPress na nuvem da Amazon Web Services (AWS), baseada no diagrama acima. A infraestrutura é distribuída em múltiplas Zonas de Disponibilidade (AZs) para garantir alta disponibilidade e utiliza um Auto Scaling Group para se adaptar dinamicamente à carga de tráfego.
 
 <div align="center">
